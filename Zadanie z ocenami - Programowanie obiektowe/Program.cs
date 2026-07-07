@@ -37,6 +37,15 @@
             
         }
         srednia_ogolna = suma_wszystkich / 12;
+        for(int i = 3; i < 3 - 1; i++) //bombelkowe przekopiowane i zamienione z mojego githuba z poprzednieog zadania
+        {
+            for (int j = 3 - 1; j >= i; j--)
+            {
+                double temp = srednia_ucznia[j - 1];
+                srednia_ucznia[j - 1] = srednia_ucznia[j];
+                srednia_ucznia[j] = temp;
+            }
+        }
     }
 
 
@@ -52,7 +61,7 @@
             Console.Write($"{przedmiot, -8}");
         }
 
-        Console.Write($"{"Średnia", -8}");
+        Console.Write($"{"Średnia", -8}"); // nie rozumiem dlaczego nie chce sie to ustawic w jednej lini pod sekcja srednia
         Console.WriteLine();
         
         for (int i = 0; i < 3; i++) // wyswietlam ilosc uczniow przy pomocy tablicy uczniowie, uczniow jest 3 wiec musze dac i < 3, zrezygnowalem z dawania formatu {uczniowie[i], 4} poniewaz brzydko wyswietlal
@@ -71,11 +80,26 @@
             
             Console.WriteLine($"{srednia_ucznia[i],8}");
 
-            //Console.WriteLine();
+            
         }
         Console.WriteLine("ŚREDNIA OGÓLNA");
         Console.WriteLine($"{srednia_ogolna:F2}");
+        Console.WriteLine();
 
+        Console.WriteLine("RANKING");
+        foreach (string uczen in uczniowie)
+        {
+            Console.Write($"{uczen, -8}");
+            
+        }
+        Console.WriteLine();
+            for (int j = 0; j < 3; j++)
+            {
+
+                Console.WriteLine($"{srednia_ucznia[j],-8}");
+
+            }
+        
         /* foreach (double ocena in oceny)
         {
             Console.Write($"{ocena,4}");
