@@ -7,7 +7,8 @@
     double[] srednia_ucznia = new double[3]; // tu bede przechowywal srednie uczniow 
     double srednia_ogolna = 0;
     double suma_wszystkich = 0;
-
+    string[] ranking_uczniow = new string[3];
+    double[] ranking_ocen = new double[3];
     public void czytaj_dane()
     {
         Random losowa = new Random();
@@ -37,15 +38,35 @@
             
         }
         srednia_ogolna = suma_wszystkich / 12;
-        for(int i = 3; i < 3 - 1; i++) //bombelkowe przekopiowane i zamienione z mojego githuba z poprzednieog zadania
+        //bool swapped;
+        //string[] ranking_uczniow = new string[3];
+        //double[] ranking_ocen = new double[3];
+        for (int i = 0; i < 3; i++)
         {
-            for (int j = 3 - 1; j >= i; j--)
-            {
-                double temp = srednia_ucznia[j - 1];
-                srednia_ucznia[j - 1] = srednia_ucznia[j];
-                srednia_ucznia[j] = temp;
-            }
+            ranking_uczniow[i] = uczniowie[i];
+            ranking_ocen[i] = srednia_ucznia[i];
         }
+        
+         for(int i = 0; i < 3 - 1; i++) //bombelkowe przekopiowane i zamienione z mojego githuba z poprzednieog zadania
+        {
+            //swapped = false;
+            for (int j = 0; j < 3 - 1 - i; j++)
+            {
+                if (ranking_ocen[j] < ranking_ocen[j + 1])
+                {
+                    
+                    double temp = ranking_ocen[j];
+                    ranking_ocen[j] = ranking_ocen[j +1];
+                    ranking_ocen[j + 1] = temp;
+
+                    string temp2 = ranking_uczniow[j];
+                    ranking_uczniow[j] = ranking_uczniow[j + 1];
+                    ranking_uczniow[j + 1] = temp2;
+
+                    //swapped = true;
+                }
+            } 
+        } 
     }
 
 
@@ -73,7 +94,7 @@
                 Console.Write($"{oceny[i, j], -8:F2}");
                 
             }
-            Console.WriteLine();
+            //Console.WriteLine();
 
 
 
@@ -87,18 +108,24 @@
         Console.WriteLine();
 
         Console.WriteLine("RANKING");
-        foreach (string uczen in uczniowie)
-        {
-            Console.Write($"{uczen, -8}");
-            
-        }
+        
         Console.WriteLine();
+           
             for (int j = 0; j < 3; j++)
+            {
+            Console.WriteLine($"{j+1} : {ranking_uczniow[j]} " + $"- {ranking_ocen[j],-8:F2}");
+            //Console.WriteLine($"{j + 1} : {uczniowie[j]} - {srednia_ucznia[j],-8:F2}");
+
+            }
+
+        
+        
+        /* for (int j = 0; j < 3; j++)
             {
 
                 Console.WriteLine($"{srednia_ucznia[j],-8}");
 
-            }
+            } */
         
         /* foreach (double ocena in oceny)
         {
